@@ -20,15 +20,18 @@ RSpec.describe 'When a user visits a vending machine show page', type: :feature 
 
     visit machine_path(dons)
 
-    expect(page).to have_content(skittles.name)
-    expect(page).to have_content(skittles.cost)
-    expect(page).to have_content(starburst.name)
-    expect(page).to have_content(starburst.cost)
-    expect(page).to have_content(snickers.name)
-    expect(page).to have_content(snickers.cost)
+    within "#id-#{skittles.id}" do
+      expect(page).to have_content(skittles.name)
+      expect(page).to have_content(skittles.cost)
+    end
+    within "#id-#{starburst.id}" do
+      expect(page).to have_content(starburst.name)
+      expect(page).to have_content(starburst.cost)
+    end
+
+    within "#id-#{snickers.id}" do
+      expect(page).to have_content(snickers.name)
+      expect(page).to have_content(snickers.cost)
+    end
   end
 end
-
-# As a user
-# When I visit a vending machine show page
-# I see the name of all of the snacks associated with that vending machine along with their price
